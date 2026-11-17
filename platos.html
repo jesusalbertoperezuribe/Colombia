@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sabores de Colombia - Catálogo de Platos Típicos consumiendo API Colombia pública.">
+  <title>Sabores de Colombia | Mini Portal de Colombia</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado y Navegación Principal -->
+  <header class="header-wrapper">
+    <div class="colombia-stripe" aria-hidden="true">
+      <div class="stripe-yellow"></div>
+      <div class="stripe-blue"></div>
+      <div class="stripe-red"></div>
+    </div>
+    <nav class="main-navbar" aria-label="Navegación principal">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-flag" aria-hidden="true">🇨🇴</span>
+        <span class="brand-text">Mini Portal <span>Colombia</span></span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html" class="nav-link">Departamentos</a>
+        </li>
+        <li>
+          <a href="platos.html" class="nav-link active" aria-current="page">Sabores de Colombia</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="main-container">
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+      <span class="hero-badge">Patrimonio Culinario</span>
+      <h1 class="hero-title">Sabores Tradicionales de Colombia</h1>
+      <p class="hero-subtitle">
+        Un recorrido por la riqueza gastronómica, los ingredientes autóctonos y las recetas emblemáticas de cada rincón de nuestra tierra.
+      </p>
+    </section>
+
+    <!-- R4 / Extra obligatorio: Contador Total de Platos Obtenidos -->
+    <section class="counter-banner" aria-live="polite">
+      <div class="counter-info">
+        <h2>🍽️ Catálogo Gastronómico Nacional</h2>
+        <p>Diversidad de recetas registradas a lo largo de las regiones del país.</p>
+      </div>
+      <div class="counter-value-box">
+        <span id="total-dishes-counter" class="counter-number">--</span>
+        <span class="counter-sub">Platos Registrados</span>
+      </div>
+    </section>
+
+    <!-- Sección de Filtros de Búsqueda -->
+    <section class="filters-section" aria-label="Filtros para buscar y explorar platos">
+      <div class="filters-container">
+        <!-- Búsqueda textual por nombre o descripción -->
+        <div class="filter-group search-group">
+          <label for="input-search-dish" class="filter-label">Buscar plato típico:</label>
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input 
+              type="search" 
+              id="input-search-dish" 
+              class="filter-input" 
+              placeholder="Ej: Ajiaco, Bandeja Paisa, Sancocho, Pescado..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- Filtro desplegable por Departamento -->
+        <div class="filter-group select-group">
+          <label for="select-dept-filter" class="filter-label">Filtrar por Departamento:</label>
+          <select id="select-dept-filter" class="filter-select">
+            <option value="todos">Todos los departamentos</option>
+          </select>
+        </div>
+
+        <!-- Botón para reiniciar filtros -->
+        <button type="button" id="btn-reset-filters" class="btn-reset-filters">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <!-- Resumen dinámico del filtro -->
+      <div class="filter-feedback">
+        Mostrando <strong id="filtered-count">0</strong> de <span id="total-available-count">0</span> platos típicos
+      </div>
+    </section>
+
+    <!-- Indicador de Carga (Loading Spinner) -->
+    <div id="loading" class="state-container" aria-live="assertive">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Cargando recetas y platos típicos de Colombia...</p>
+    </div>
+
+    <!-- Contenedor de Error en el DOM -->
+    <div id="error-container" class="state-container error-state hidden" role="alert">
+      <div class="error-icon" aria-hidden="true">⚠️</div>
+      <h3 id="error-title">Error al consultar los platos típicos</h3>
+      <p id="error-message">Ocurrió un problema al obtener el catálogo gastronómico.</p>
+      <button type="button" id="btn-retry" class="btn-retry">Reintentar conexión</button>
+    </div>
+
+    <!-- Grilla de Tarjetas de Platos Típicos -->
+    <section id="dishes-container" class="cards-grid" aria-label="Listado de platos típicos">
+      <!-- Tarjetas de platos inyectadas dinámicamente con JavaScript -->
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        Mini Portal <span>Colombia</span>
+      </div>
+      <div class="footer-info">
+        Datos provistos por <a href="https://api-colombia.com/" target="_blank" rel="noopener noreferrer">API Colombia</a>
+      </div>
+    </div>
+    <p class="footer-credits">
+      Desarrollado para la clase de JavaScript &bull; Ingeniería de Software
+    </p>
+  </footer>
+
+  <!-- Regla estricta: Script ubicado justo antes del cierre del body -->
+  <script src="js/platos.js"></script>
+</body>
+</html>

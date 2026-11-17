@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explorador de Departamentos de Colombia - Mini Portal de Colombia consumiendo API pública.">
+  <title>Departamentos | Mini Portal de Colombia</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado y Navegación Principal -->
+  <header class="header-wrapper">
+    <div class="colombia-stripe" aria-hidden="true">
+      <div class="stripe-yellow"></div>
+      <div class="stripe-blue"></div>
+      <div class="stripe-red"></div>
+    </div>
+    <nav class="main-navbar" aria-label="Navegación principal">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-flag" aria-hidden="true">🇨🇴</span>
+        <span class="brand-text">Mini Portal <span>Colombia</span></span>
+      </a>
+      <ul class="nav-links">
+        <li>
+          <a href="index.html" class="nav-link active" aria-current="page">Departamentos</a>
+        </li>
+        <li>
+          <a href="platos.html" class="nav-link">Sabores de Colombia</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="main-container">
+
+    <!-- Sección Hero -->
+    <section class="hero-section">
+      <span class="hero-badge">Territorio y Geografía</span>
+      <h1 class="hero-title">Explorador de Departamentos</h1>
+      <p class="hero-subtitle">
+        Conoce la división político-administrativa, población, superficie y regiones naturales que componen la República de Colombia.
+      </p>
+    </section>
+
+    <!-- R3 / Extra obligatorio: Resumen agrupado por Región -->
+    <section class="summary-section" aria-labelledby="summary-heading">
+      <div class="summary-header">
+        <h2 id="summary-heading" class="summary-title">
+          <span>🗺️</span> Distribución por Zona Geográfica (Región)
+        </h2>
+        <span id="total-departments-badge" class="summary-badge-total">Cargando total...</span>
+      </div>
+      <div id="regions-summary" class="regions-grid" aria-live="polite">
+        <!-- Tarjetas de conteo por región inyectadas dinámicamente con JavaScript -->
+      </div>
+    </section>
+
+    <!-- Sección de Filtros de Búsqueda para Departamentos -->
+    <section class="filters-section" aria-label="Filtros para buscar y explorar departamentos">
+      <div class="filters-container">
+        <!-- Búsqueda textual por nombre, capital o descripción -->
+        <div class="filter-group search-group">
+          <label for="input-search-depto" class="filter-label">Buscar departamento o capital:</label>
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input 
+              type="search" 
+              id="input-search-depto" 
+              class="filter-input" 
+              placeholder="Ej: Antioquia, Medellín, Santander, Caribe..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- Filtro selector por Zona Geográfica / Región -->
+        <div class="filter-group select-group">
+          <label for="select-region-filter" class="filter-label">Filtrar por Zona Geográfica:</label>
+          <select id="select-region-filter" class="filter-select">
+            <option value="todas">Todas las zonas geográficas</option>
+          </select>
+        </div>
+
+        <!-- Botón para reiniciar filtros -->
+        <button type="button" id="btn-reset-depto-filters" class="btn-reset-filters">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <!-- Resumen dinámico del filtro -->
+      <div class="filter-feedback">
+        Mostrando <strong id="depto-filtered-count">0</strong> de <span id="depto-total-available-count">0</span> departamentos
+      </div>
+    </section>
+
+    <!-- Indicador de Carga (Loading Spinner) -->
+    <div id="loading" class="state-container" aria-live="assertive">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Cargando información geográfica desde API Colombia...</p>
+    </div>
+
+    <!-- Contenedor de Error en el DOM -->
+    <div id="error-container" class="state-container error-state hidden" role="alert">
+      <div class="error-icon" aria-hidden="true">⚠️</div>
+      <h3 id="error-title">Error al consultar los datos</h3>
+      <p id="error-message">Ocurrió un inconveniente al cargar los departamentos.</p>
+      <button type="button" id="btn-retry" class="btn-retry">Reintentar conexión</button>
+    </div>
+
+    <!-- Grilla de Tarjetas de Departamentos -->
+    <section id="departments-container" class="cards-grid" aria-label="Listado de departamentos">
+      <!-- Tarjetas de departamentos inyectadas dinámicamente con JavaScript -->
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        Mini Portal <span>Colombia</span>
+      </div>
+      <div class="footer-info">
+        Datos provistos por <a href="https://api-colombia.com/" target="_blank" rel="noopener noreferrer">API Colombia</a>
+      </div>
+    </div>
+    <p class="footer-credits">
+      Desarrollado para la clase de JavaScript &bull; Ingeniería de Software
+    </p>
+  </footer>
+
+  <!-- Regla estricta: Script ubicado justo antes del cierre del body -->
+  <script src="js/departamentos.js"></script>
+</body>
+</html>
